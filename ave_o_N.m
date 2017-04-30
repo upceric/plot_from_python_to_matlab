@@ -1,10 +1,6 @@
 function [result]=ave_o_N(arr,N)
-%return the average value of every N values
-%L=length(arr);
-%result=zeros(ceil(length(arr)/N),1);
-%for i=1:ceil(length(arr)/N)
-%result(i)=mean(arr(min(1+N*(i-1),L):min(N+N*(i-1),L)));
-%end
+%m file for rolling average of the dataset arr,
+%N is the number of data that you would like to have a mean
 L=length(arr);
 result=zeros(length(arr),1);
 for i=1:L
