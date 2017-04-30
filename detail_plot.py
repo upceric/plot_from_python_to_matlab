@@ -2,13 +2,14 @@ marker=['+','o','*','x','s','d','^','v','>','<','p','h']
 color_m=['y','m','c','r','g','b','k']
 len_m=len(marker)
 len_c=len(color_m)
-digit=3
+digit=3 #keep three digits
 def plot_a_part(t='ott',kk=range(1,5),left=2,right=1014,mpv=11,title='ott'):
-   #ottawa-piranha
+   '''
+   sub function to generate matlab file for plot
+   '''
    #kk=[2,4,6]
    #left,right=2,1014
-   #AK-100
-   #kk=range(1,10)
+   #AK-100 #kk=range(1,10)
    #kk=[2,4,9]
    #f.write('C=linspecer('+str(len(kk)+1)+',\'sequential\');'+'\n')
    f.write('C=distinguishable_colors('+str(len(kk)+1)+');'+'\n')
@@ -31,8 +32,6 @@ def plot_a_part(t='ott',kk=range(1,5),left=2,right=1014,mpv=11,title='ott'):
       f.write('d_'+t+'_'+str(i)+'=ave_o_N(d_'+t+'_'+str(i)+'('+str(left)+':'+str(right)+'),N)'+';\n')
       f.write('s_'+t+'_'+str(i)+'=ave_o_N(s_'+t+'_'+str(i)+'('+str(left)+':'+str(right)+'),N)'+';\n')
       f.write('semilogy(s_'+t+'_'+str(i)+'(1:end-m).*mpv,a_'+t+'_'+str(i)+'(1:end-m).*mpv.*mpv,'+'\'color\',C(counter-1,:)'+',\'DisplayName\',[num2str(counter-1) \'-S=\' '+'num2str(floor(sum(sum(i_'+t+'_'+str(i)+'))/(sum(sum(d_'+t+'_'+str(i)+'))+sum(sum(i_'+t+'_'+str(i)+')))*10^'+str(digit)+')/10^'+str(digit)+')]'+',\'LineWidth\',4'+');\n')
-      #f.write('semilogy(s_'+t+'_'+str(i)+'(1:end-m).*mpv,a_'+t+'_'+str(i)+'(1:end-m).*mpv.*mpv,\''+color_m[i%len_c]+marker[i%len_m]+'-\',\'DisplayName\',[\''+str(i)+'-S=\' '+'num2str(floor(sum(sum(i_'+t+'_'+str(i)+'))/(sum(sum(d_'+t+'_'+str(i)+'))+sum(sum(i_'+t+'_'+str(i)+')))*10^'+str(digit)+')/10^'+str(digit)+')]'+',\'LineWidth\',2'+');\n')
-      #f.write('plot(s_m_'+str(i)+'(1:end-m),a_m_'+str(i)+'(1:end-m),\'c'+marker[i%len_m]+'-\',\'DisplayName\',[\'m-'+str(i)+'-\' '+'num2str(sum(sum(i_m_'+str(i)+'))/(sum(sum(d_m_'+str(i)+'))+sum(sum(i_m_'+str(i)+'))))]);\n')
       f.write('hold on\n')
       f.write('set(gca,\'linewidth\',4,\'Fontsize\',18,\'FontWeight\',\'bold\');\n')
       f.write('title(\''+title+'\',\'interpreter\',\'latex\');\n')
@@ -60,8 +59,8 @@ with open('plot_batch_all.m','w') as f:
    left,right=1,420
    f.write('x0=10;'+'\n')
    f.write('y0=10;'+'\n')
-   f.write('width=1050;'+'\n')
-   f.write('height=850;'+'\n')
+   f.write('width=1050;'+'\n')#set the picture x range
+   f.write('height=850;'+'\n')#set the picture y range
    f.write('N=7;'+'\n')
    f.write('set(gcf,\'units\',\'points\',\'position\',[x0,y0,width,height]);'+'\n')
    #AK-100
